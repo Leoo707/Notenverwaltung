@@ -26,6 +26,6 @@ public class Klasse {
     public ArrayList<String> getFaecher() {
         return faecher;
     }
-    public int ausgebenDurchschnitt
+    //public int ausgebenDurchschnitt
 
 }
