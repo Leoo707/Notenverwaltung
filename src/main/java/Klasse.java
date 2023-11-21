@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-
-
 public class Klasse {
     private String name;
     private ArrayList<String> schueler = new ArrayList<String>();
@@ -12,11 +10,9 @@ public class Klasse {
     public String getName() {
         return name;
     }
-
     public void setSchueler(ArrayList<String> schueler) {
         this.schueler = schueler;
     }
-
     public ArrayList<String> getSchueler() {
         return schueler;
     }
@@ -27,5 +23,4 @@ public class Klasse {
         return faecher;
     }
     //public int ausgebenDurchschnitt
-
 }

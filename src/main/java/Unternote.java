@@ -4,16 +4,19 @@ public class Unternote {
     private String name;
     private ArrayList<Integer> unternoten = new ArrayList<>();
     private int wert;
-
-    Unternote() {
-
+    public int getWert() {
+        return wert;
+    }
+    public ArrayList<Integer> getUnternoten() {
+        return unternoten;
+    }
+    public void setWert(int wert) {
+        this.wert = wert;
     }
     Unternote(String name) {
         this.name = name;
     }
-
-    public void addUnternote(Unternote unternote) {
-
+    public void addUnternote(int unternote) {
+        this.unternoten.add(unternote);
     }
-
 }
