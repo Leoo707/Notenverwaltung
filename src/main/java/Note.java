@@ -1,31 +1,40 @@
-import java.net.Inet4Address;
 import java.util.ArrayList;
 
 public class Note {
-    private ArrayList<Integer> unternoten = new ArrayList<>();
-    private int wert;
-    public void setUnternote(ArrayList<Integer> unternoten) {
+    private ArrayList<Fachnote> unternoten = new ArrayList<>();
+    private Integer wert;
+    public void setUnternote(ArrayList<Fachnote> unternoten) {
         this.unternoten = unternoten;
     }
-    public ArrayList<Integer> getUnternote() {
+    public ArrayList<Fachnote> getUnternote() {
         return unternoten;
     }
     public void setWert(int wert) {
         this.wert = wert;
     }
     public int getWert() {
+        if (wert == null) {
+            return durchschnitt();
+        }
         return wert;
     }
-    public int noteAusgeben(Unternote unternote) {
-        ArrayList<Integer> unternoten = unternote.getUnternoten();
+    private int durchschnitt() {
         int sum = 0;
         for (int i = 0; i < unternoten.size(); i++) {
-            sum += unternoten.get(i);
-            sum = sum / unternoten.size();
+            sum += unternoten.get(i).getWert();
         }
+        float durchschnitt = (float)sum / unternoten.size();
         return sum;
     }
-    //addUnternote
-    //removeUnternote
-    // Note(unterrichtsfach) {}
+
+    public void addUnternote(Fachnote fachnote) {
+        this.unternoten.add(fachnote);
+    }
+    public void removeUnternote(Fachnote fachnote) {
+        this.unternoten.remove(fachnote);
+    }
+
+    Note (Fachnote fachnote) {
+        this.
+    }
 }
