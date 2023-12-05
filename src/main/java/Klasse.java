@@ -2,7 +2,7 @@ import java.util.ArrayList;
 public class Klasse {
     private String name;
     private ArrayList<String> schueler = new ArrayList<String>();
-    private Notensystem notensystem = new Notensystem();
+    private Notensystem notensystem;
     private ArrayList<String> faecher;
     public void setName(String name) {
         this.name = name;
@@ -22,5 +22,7 @@ public class Klasse {
     public ArrayList<String> getFaecher() {
         return faecher;
     }
-    //public int ausgebenDurchschnitt
+    public int ausgebenDurchschnitt(Note note) {
+return  0;
+    }
 }

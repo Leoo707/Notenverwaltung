@@ -1,4 +1,4 @@
-public class Notensystem {
+public abstract class Notensystem {
     private int besteNote;
     private int schlechtesteNote;
     private int inkrement;
@@ -18,4 +18,10 @@ public class Notensystem {
     public int getInkrement() {
         return inkrement;
     }
+
+    /**
+     * Wandelt die Noten in die Textform um.
+     * @param wert
+     */
+    public abstract void toString(int wert);
 }
