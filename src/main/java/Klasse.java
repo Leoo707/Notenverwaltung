@@ -3,7 +3,7 @@ public class Klasse {
     private String name;
     private ArrayList<String> schueler = new ArrayList<String>();
     private Notensystem notensystem;
-    private ArrayList<String> faecher;
+    public ArrayList<String> faecher = new ArrayList<>();
     public void setName(String name) {
         this.name = name;
     }
@@ -23,6 +23,6 @@ public class Klasse {
         return faecher;
     }
     public int ausgebenDurchschnitt(Note note) {
-return  0;
+        return  0;
     }
 }
