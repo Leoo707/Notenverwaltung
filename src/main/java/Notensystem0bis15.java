@@ -1,4 +1,11 @@
+/**
+ * Diese Klasse erstellt ein Notensystem mit den Noten 0 - 15.
+ */
 public class Notensystem0bis15 extends Notensystem {
+    /**
+     * Wandelt die Notenpunkte in die Textform um.
+     * @param wert der Note
+     */
     @Override public void toString (int wert) {
         switch (wert) {
             case 0:

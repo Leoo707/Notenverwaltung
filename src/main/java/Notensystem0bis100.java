@@ -1,4 +1,11 @@
+/**
+ * Diese Klasse erstellt ein Notensystem mit den Noten 0 - 100.
+ */
 public class Notensystem0bis100 extends Notensystem {
+    /**
+     * Wandelt die Notenpunkte in die Textform um.
+     * @param wert der Note
+     */
     public void toString(int wert) {
         if (wert >= 90 && wert <= 100) {
             System.out.println("Sehr gut");

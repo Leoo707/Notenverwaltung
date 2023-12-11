@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+/**
+ * Erstellt eine Klasse für eine Schulklasse.
+ */
 public class Klasse {
     private String name;
     private ArrayList<String> schueler = new ArrayList<String>();
@@ -7,6 +10,9 @@ public class Klasse {
     public void setName(String name) {
         this.name = name;
     }
+    /**
+     * "Getter-Setter" für Name der Klasse , Liste der Schüler und Fächer
+     */
     public String getName() {
         return name;
     }
@@ -22,6 +28,9 @@ public class Klasse {
     public ArrayList<String> getFaecher() {
         return faecher;
     }
+    /**
+     * Platzhaltermethode zur Berechnung der Durchschnittsnote für ein bestimmtes Fach
+     */
     public int ausgebenDurchschnitt(Note note) {
         return  0;
     }

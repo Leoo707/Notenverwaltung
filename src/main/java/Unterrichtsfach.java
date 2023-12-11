@@ -1,3 +1,6 @@
+/**
+ * Klasse, die ein Fach repräsentiert.
+ */
 public class Unterrichtsfach {
     private String name;
     public String getName() {

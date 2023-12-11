@@ -1,5 +1,7 @@
 import java.util.ArrayList;
-
+/**
+ * Klasse, die einen Schüler darstellt
+ */
 public class Schueler {
     private String name;
     private ArrayList<Integer> noten = new ArrayList<>();
