@@ -4,7 +4,7 @@ import java.util.ArrayList;
  */
 public class Klasse {
     private String name;
-    private ArrayList<String> schueler = new ArrayList<String>();
+    private ArrayList<String> schueler = new ArrayList<>();
     private Notensystem notensystem;
     public ArrayList<String> faecher = new ArrayList<>();
     public void setName(String name) {
@@ -16,8 +16,8 @@ public class Klasse {
     public String getName() {
         return name;
     }
-    public void setSchueler(ArrayList<String> schueler) {
-        this.schueler = schueler;
+    public void setSchueler(String schueler) {
+        this.schueler.add(schueler);
     }
     public ArrayList<String> getSchueler() {
         return schueler;
