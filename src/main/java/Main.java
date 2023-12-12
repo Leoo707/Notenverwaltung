@@ -2,18 +2,19 @@ import java.nio.file.LinkPermission;
 import java.util.Scanner;
 
 public class Main {
+    //Erstellen eines Scanners und Aufrufen der setGradesystem Methode um das Bewertungssystem vom Nutzer zu erhalten
     public static <choice> void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Notensystem notensystem = setGradesystem();
-
+        //Check das ein gültiges Bewertungssytem ausgewählt wurde
         if (notensystem != null) {
             System.out.println("Notensystem: " + notensystem.getClass().getSimpleName());
             System.out.println("Wie lautet der Name der Klasse?");
         } else {
+            //Programm wird mit Error Code 1 beendet und dies wird ausgegeben
             System.out.println("Ungültige Eingabe. Programm wird beendet.");
             System.exit(1);
         }
-
         Klasse klasse = new Klasse();
 
         String className = input.nextLine();
@@ -25,7 +26,7 @@ public class Main {
         int subjectAmount = input.nextInt();
 
         System.out.println("Geben sie die Fächer der KLasse " + klasse.getName() + " ein: ");
-
+        //Schleife, um die Namen der einzelnen Fächer zu lesen und sie der Array-Liste Fächer hinzuzufügen
         for (int i = 0; i <= subjectAmount; i++) {
             String subjectName = input.nextLine();
             klasse.setFaecher(subjectName);

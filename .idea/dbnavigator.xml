@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -13,12 +13,31 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="275a6901-ad0b-460b-a23b-2ee576ae6ede">
-      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[create table Projekt (
-	Beschreibung varchar(n),
-	Startdatum int(n),
-	Enddatum int(n),
-	Bezeichnung varchar(n), primary key
-)]]></console>
+      <console name="Connection" type="STANDARD" schema="lija" session="Main"><![CDATA[use lija;
+
+create table Projekt (
+                         ID int(3) primary key,
+                         Bezeichnung varchar(30),
+                         Beschreibung varchar(300),
+                         Startdatum date,
+                         Enddatum date
+);
+create table Mitarbeiter (
+                             Personalnummer int(8) primary key,
+                             Vorname varchar(30),
+                             Nachname varchar(30),
+                             Projekt_ID int,
+                             Abteilung_ID int
+);
+create table Abteilung(
+                           ID int(5) primary key,
+                           Bezeichnung varchar(30)
+);
+create table Projektmitarbeiter(
+                                   ID Int(12) primary key,
+                                   Projekt_ID int,
+                                   Mitarbeiter_ID int
+);]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -26,6 +45,9 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -44,7 +66,7 @@
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
-          <host value="10.49.128.225" />
+          <host value="10.49.128.185" />
           <port value="3306" />
           <database value="leonard" />
           <tns-folder value="" />
