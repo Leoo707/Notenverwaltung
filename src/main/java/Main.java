@@ -12,7 +12,7 @@ public class Main {
             setGrades(notensystem);
             System.out.println("Wie lautet der Name der Klasse?");
         } else {
-            //Programm wird mit Error Code 1 beendet und dies wird ausgegebenss
+            //Programm wird mit Error Code 1 beendet und dies wird ausgegeben
             System.out.println("Ungültige Eingabe. Programm wird beendet.");
             System.exit(1);
         }
@@ -27,7 +27,7 @@ public class Main {
 
         input.nextLine();
 
-        System.out.println("Geben sie die Fächer der KLasse " + klasse.getName() + " ein: ");
+        System.out.println("Geben sie die Fächer der Klasse " + klasse.getName() + " ein: ");
         //Schleife, um die Namen der einzelnen Fächer zu lesen und sie der Array-Liste Fächer hinzuzufügen
         for (int i = 1; i <= subjectAmount; i++) {
             String subjectName = input.nextLine();
@@ -57,7 +57,7 @@ public class Main {
     public static Notensystem setGradesystem() {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Wilkommen zum Notenberechnungs-Programm!");
+        System.out.println("Willkommen zum Notenberechnungs-Programm!");
         System.out.println("Welches Notensystem wünschen Sie?");
         System.out.println("1: 1 bis 6, 2: 0 bis 15, 3: 0 bis 100");
 
@@ -88,23 +88,29 @@ public class Main {
                 notensystem.setBesteNote(0);
                 break;
             default:
-                System.out.println("Dieses Notensystem existiert in diesem Rechner nicht, Sie Knecht!");
+                System.out.println("Dieses Notensystem existiert in diesem Rechner nicht!");
                 break;
         }
     }
     public static void unternoten(Klasse klasse, Notensystem notensystem) {
         Scanner input = new Scanner(System.in);
         ArrayList<Float> classAverage = new ArrayList<>();
+
+        //Liste zum Speichern des Durchschnitts für jedes Fach in der Klasse
         for (int i = 0; i < klasse.getFaecher().size(); i++) {
             System.out.println("Notenanzahl für das Fach: " + klasse.getFaecher().get(i));
             int amountGrades = input.nextInt();
             System.out.println("Beträgt: " + amountGrades);
             ArrayList<Float> classSubjectAverage = new ArrayList<>();
+
+            //Durchlaufen von jedem Schüler in der Klasse
             for (int j = 0; j < klasse.getSchueler().size(); j++) {
                 System.out.println("Noten für den/die Schüler*in: " + klasse.getSchueler().get(j));
                 int k = 0;
                 int durchschnitt = 0;
                 ArrayList<Note> unterNotenListe = new ArrayList<>();
+
+                //Schleife zur Eingabe von Noten für den Schüler
                 while (k < amountGrades) {
                     int grades = input.nextInt();
                     if (grades <= notensystem.getSchlechtesteNote() && grades >= notensystem.getBesteNote()) {
@@ -119,6 +125,7 @@ public class Main {
                     }
                     input.nextLine();
                 }
+                //Zeigen der individuellen Noten für den Schüler
                 System.out.println("-------------------------------------------------------------------------");
                 System.out.println("Die Note(n) für den/die Schüler*in " + klasse.getSchueler().get(j) + ":");
                 System.out.println("Im Fach: " + klasse.getFaecher().get(i));
@@ -128,6 +135,7 @@ public class Main {
                 for (Note unterNote : unterNotenListe) {
                     System.out.printf(unterNote.toString());
                 }
+                // Berechnen und anzeigen der Durchschnittsnote des Schülers im Fach
                 float durchschnittUnternote = (float) durchschnitt / amountGrades;
                 System.out.println("Der Durschnitt für das Fach: " + klasse.getFaecher().get(i) + " beträgt:");
                 System.out.println(durchschnittUnternote);
