@@ -4,21 +4,34 @@ import java.util.ArrayList;
  */
 public class Note {
     private String name;
-    private ArrayList<Fachnote> unternoten = new ArrayList<>();
-    private Integer wert;
+    private ArrayList<Integer> unternoten = new ArrayList<>();
+    private int wert;
     Notensystem notensystem;
     /**
      * Konstruktor zum Erstellen einer Note.
      */
-    Note (String name, Notensystem notensystem) {
+    Note (String name, Notensystem notensystem, int wert) {
+        this.name = name;
+        this.notensystem = notensystem;
+        this.wert = wert;
+    }
+
+    public Note (String name, Notensystem notensystem) {
         this.name = name;
         this.notensystem = notensystem;
     }
 
-    public void setUnternote(ArrayList<Fachnote> unternoten) {
+    public Note (Notensystem notensystem) {
+        this.notensystem = notensystem;
+    }
+    public Note(ArrayList<Integer> unternoten) {
         this.unternoten = unternoten;
     }
-    public ArrayList<Fachnote> getUnternote() {
+
+    public void setUnternote() {
+        unternoten.add(wert);
+    }
+    public ArrayList<Integer> getUnternote() {
         return unternoten;
     }
     public void setWert(Integer wert) {
@@ -31,16 +44,13 @@ public class Note {
         this.name = name;
     }
     public int getWert() {
-        if (wert == null) {
-            return durchschnitt();
-        }
-        return wert;
+        return durchschnitt();
     }
     /**
      * Methode zum Hinzufügen einer Unternote zur Liste.
      */
-    public void addUnternote(Fachnote fachnote) {
-        this.unternoten.add(fachnote);
+    public void addUnternote() {
+        this.unternoten.add(wert);
     }
     /**
      * Methode zum Entfernen einer Unternote aus der Liste
@@ -51,7 +61,7 @@ public class Note {
     private int durchschnitt() {
         int sum = 0;
         for (int i = 0; i < unternoten.size(); i++) {
-            sum += unternoten.get(i).getWert();
+            sum += unternoten.get(i);
         }
         float durchschnitt = (float)sum / unternoten.size();
         return sum;

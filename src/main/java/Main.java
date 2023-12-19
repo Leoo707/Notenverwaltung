@@ -1,24 +1,21 @@
-import java.nio.file.LinkPermission;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
-
 public class Main {
     //Erstellen eines Scanners und Aufrufen der setGradesystem Methode um das Bewertungssystem vom Nutzer zu erhalten
-    public static <choice> void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        HashMap<String, Integer> subjectGrades = new HashMap<String, Integer>();
+    public static void main(String[] args) {
+        Klasse klasse = new Klasse();
         Notensystem notensystem = setGradesystem();
+        Scanner input = new Scanner(System.in);
         //Check das ein gültiges Bewertungssytem ausgewählt wurde
         if (notensystem != null) {
-            System.out.println("Notensystem: " + notensystem.getClass().getSimpleName());
+            System.out.println(notensystem.getClass().getSimpleName());
+            setGrades(notensystem);
             System.out.println("Wie lautet der Name der Klasse?");
         } else {
-            //Programm wird mit Error Code 1 beendet und dies wird ausgegeben
+            //Programm wird mit Error Code 1 beendet und dies wird ausgegebenss
             System.out.println("Ungültige Eingabe. Programm wird beendet.");
             System.exit(1);
         }
-        Klasse klasse = new Klasse();
 
         String className = input.nextLine();
 
@@ -28,9 +25,11 @@ public class Main {
 
         int subjectAmount = input.nextInt();
 
+        input.nextLine();
+
         System.out.println("Geben sie die Fächer der KLasse " + klasse.getName() + " ein: ");
         //Schleife, um die Namen der einzelnen Fächer zu lesen und sie der Array-Liste Fächer hinzuzufügen
-        for (int i = 0; i <= subjectAmount; i++) {
+        for (int i = 1; i <= subjectAmount; i++) {
             String subjectName = input.nextLine();
             klasse.setFaecher(subjectName);
         }
@@ -38,30 +37,22 @@ public class Main {
         //Test
         System.out.println(klasse.getFaecher());
 
-        Schueler schueler = new Schueler();
-
-        System.out.printf("Wie lautet die Anzahl der Schüler?");
+        System.out.println("Wie lautet die Anzahl der Schüler?");
 
         int amountStudents = input.nextInt();
 
-        for (int i = 0; i <= amountStudents; i++) {
+        input.nextLine();
+
+        System.out.println("Namen: ");
+
+        for (int i = 1; i <= amountStudents; i++) {
             String students = input.nextLine();
             klasse.setSchueler(students);
         }
-
         //Test schueler
         System.out.println(klasse.getSchueler());
 
-        System.out.println("FÜr welches Fach sollen Noten für die Schüler der Klasse " + klasse.getName() + " eingegeben werden?");
-
-        String subjectName = input.nextLine();
-
-        if (klasse.getFaecher().contains(subjectName)) {
-            System.out.println("Noten für das gewünschte Fach: ");
-            int grade = input.nextInt();
-            subjectGrades.put(subjectName, grade);
-            System.out.println(subjectGrades);
-        }
+        unternoten(klasse, notensystem);
     }
     public static Notensystem setGradesystem() {
         Scanner input = new Scanner(System.in);
@@ -81,5 +72,79 @@ public class Main {
                 yield null;
             }
         };
+    }
+    public static void setGrades(Notensystem notensystem) {
+        switch (notensystem.getClass().getSimpleName()) {
+            case "Notensystem1bis6":
+                notensystem.setSchlechtesteNote(6);
+                notensystem.setBesteNote(1);
+                break;
+            case "Notensystem0bis15":
+                notensystem.setSchlechtesteNote(15);
+                notensystem.setBesteNote(0);
+                break;
+            case "Notensystem0bis100":
+                notensystem.setSchlechtesteNote(100);
+                notensystem.setBesteNote(0);
+                break;
+            default:
+                System.out.println("Dieses Notensystem existiert in diesem Rechner nicht, Sie Knecht!");
+                break;
+        }
+    }
+    public static void unternoten(Klasse klasse, Notensystem notensystem) {
+        Scanner input = new Scanner(System.in);
+        ArrayList<Float> classAverage = new ArrayList<>();
+        for (int i = 0; i < klasse.getFaecher().size(); i++) {
+            System.out.println("Notenanzahl für das Fach: " + klasse.getFaecher().get(i));
+            int amountGrades = input.nextInt();
+            System.out.println("Beträgt: " + amountGrades);
+            ArrayList<Float> classSubjectAverage = new ArrayList<>();
+            for (int j = 0; j < klasse.getSchueler().size(); j++) {
+                System.out.println("Noten für den/die Schüler*in: " + klasse.getSchueler().get(j));
+                int k = 0;
+                int durchschnitt = 0;
+                ArrayList<Note> unterNotenListe = new ArrayList<>();
+                while (k < amountGrades) {
+                    int grades = input.nextInt();
+                    if (grades <= notensystem.getSchlechtesteNote() && grades >= notensystem.getBesteNote()) {
+                        k++;
+                        Note unterNoten = new Note(klasse.getSchueler().get(j), notensystem, grades);
+                        unterNoten.setWert(grades);
+                        unterNoten.setUnternote();
+                        unterNotenListe.add(unterNoten);
+                        durchschnitt += grades;
+                    } else {
+                        System.out.println("Als was arbeiten Sie?");
+                    }
+                    input.nextLine();
+                }
+                System.out.println("-------------------------------------------------------------------------");
+                System.out.println("Die Note(n) für den/die Schüler*in " + klasse.getSchueler().get(j) + ":");
+                System.out.println("Im Fach: " + klasse.getFaecher().get(i));
+                for (Note unterNote : unterNotenListe) {
+                    System.out.println("Unternote: " + unterNote.getUnternote());
+                }
+                for (Note unterNote : unterNotenListe) {
+                    System.out.printf(unterNote.toString());
+                }
+                float durchschnittUnternote = (float) durchschnitt / amountGrades;
+                System.out.println("Der Durschnitt für das Fach: " + klasse.getFaecher().get(i) + " beträgt:");
+                System.out.println(durchschnittUnternote);
+                System.out.println("-------------------------------------------------------------------------");
+                classSubjectAverage.add(durchschnittUnternote);
+            }
+            float gesamtDurchschnitt = 0;
+            for (float klassenDurchschnitt : classSubjectAverage) {
+                gesamtDurchschnitt += klassenDurchschnitt;
+            }
+            gesamtDurchschnitt /= classSubjectAverage.size();
+            classAverage.add(gesamtDurchschnitt);
+        }
+        System.out.println("Fachdurchschnitte der Klasse " + klasse.getName() + ":" +
+                "");
+        for (int i = 0; i < klasse.getFaecher().size(); i++) {
+            System.out.println(klasse.getFaecher().get(i) + ": " + classAverage.get(i));
+        }
     }
 }
